@@ -141,6 +141,7 @@ def nav_html(cur):
 
 TPL=open(os.path.join(ROOT,"tools","template.html")).read()
 HOME=open(os.path.join(ROOT,"tools","home.html")).read()
+FORM=open(os.path.join(ROOT,"tools","form.html")).read()
 import hashlib; VER=hashlib.md5(open(os.path.join(ROOT,"tools","style.css"),"rb").read()).hexdigest()[:8]
 shutil.copytree(os.path.join(ROOT,"tools","fonts"),f"{OUT}/fonts")
 footer=None; pages=[]
@@ -152,10 +153,13 @@ for f in sorted(glob.glob(f"{RAW}/pages/*.html")):
     if foot and footer is None: footer="".join(render_section(x) for x in foot.find_all("section"))
     if foot: foot.decompose()
     if path in ("/","/רובוטיקה-ילדים-נוער"): body=HOME; bodycls="home"
+    elif path=="/השאירו-פרטים": body=FORM; bodycls="form"
     else: body='<div class="legacy">'+"".join(render_section(x) for x in s.find_all("section"))+'</div>'; bodycls="page"
     title=s.title.get_text() if s.title else "Robotika4Kids"
     og=lambda p:(s.find("meta",attrs={"property":p}) or {}).get("content","")
-    desc=og("og:description"); ogimg=local_img(og("og:image")) if og("og:image") else ""
+    desc=og("og:description")
+    if path=="/השאירו-פרטים": desc="השאירו פרטים ונחזור אליכם עם חוג, סדנה או קורס רובוטיקה שמתאימים לילד או לילדה."
+    ogimg=local_img(og("og:image")) if og("og:image") else ""
     navcur="/" if path=="/רובוטיקה-ילדים-נוער" else path
     page=(TPL.replace("{{TITLE}}",html.escape(title)).replace("{{DESC}}",html.escape(desc))
           .replace("{{OGIMG}}",("https://www.robotika4kids.co.il"+ogimg) if ogimg.startswith("/") else ogimg)
@@ -164,9 +168,6 @@ for f in sorted(glob.glob(f"{RAW}/pages/*.html")):
     d=OUT+(path if path!="/" else "/"); os.makedirs(d,exist_ok=True)
     open(os.path.join(d,"index.html"),"w").write(page); pages.append(path)
 shutil.copy(os.path.join(ROOT,"tools","style.css"),f"{OUT}/style.css")
-# extra hand-made pages (extras/ is copied as-is on top of the build)
-EX=os.path.join(ROOT,"extras")
-if os.path.isdir(EX): shutil.copytree(EX,OUT,dirs_exist_ok=True); pages.append("/kids")
 # sitemap
 open(f"{OUT}/sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+"".join(f"<url><loc>https://www.robotika4kids.co.il{urllib.parse.quote(p)}</loc></url>" for p in pages)+"</urlset>")
 open(f"{OUT}/robots.txt","w").write("User-agent: *\nAllow: /\nSitemap: https://www.robotika4kids.co.il/sitemap.xml\n")

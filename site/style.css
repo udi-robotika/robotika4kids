@@ -194,3 +194,43 @@ iframe.embed{width:100%;border:0;display:block;border-radius:16px}
   .visit-act .b{flex:1}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---------- questionnaire ---------- */
+.fhead{background-color:var(--yellow);background-image:radial-gradient(circle,rgba(15,27,61,.13) 1.6px,transparent 1.8px);background-size:22px 22px;border-bottom:3px solid var(--ink)}
+.fhead-in{max-width:720px;margin:0 auto;padding:22px 18px 24px}
+.fhead h1{font-family:var(--disp);font-weight:400;font-size:clamp(34px,5vw,50px);line-height:1.05;margin:0 0 8px}
+.fhead p{margin:0;font-size:18px;max-width:36em}
+.fbody{max-width:720px;margin:0 auto;padding:22px 18px 50px}
+.qcard{background:#fff;border:2.5px solid var(--ink);border-radius:18px;padding:16px 18px 18px;margin:0 0 14px;min-width:0}
+.qcard h2,.qcard legend{font-family:var(--disp);font-weight:400;font-size:23px;line-height:1.2;margin:0 0 12px;padding:0}
+fieldset.qcard legend{float:right;width:100%}
+fieldset.qcard legend+*{clear:both}
+.qrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.qrow+.qrow,.qf1{margin-top:12px}
+.qcard label:not(.chips label){display:block;font-weight:600;margin-bottom:5px;font-size:15px}
+.must{font-size:13px;font-weight:600;color:#fff;background:var(--red);border-radius:6px;padding:1px 7px;margin-inline-start:4px}
+.qcard input[type=text],.qcard input[type=tel],.qcard select,.qcard textarea{width:100%;font:inherit;color:var(--ink);background:var(--paper);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.qcard input[type=tel]{text-align:right}
+.qcard textarea{min-height:76px;resize:vertical}
+.qcard input:focus,.qcard select:focus,.qcard textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(31,95,214,.18)}
+.qsub{margin:0 0 7px;font-weight:600;font-size:15px;color:var(--ink-2)}
+.chips+.qsub{margin-top:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative}
+.chips input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chips span{display:block;border:2px solid var(--ink);border-radius:999px;padding:6px 15px;font-weight:600;font-size:15px;background:#fff;transition:background .12s}
+.chips label:hover span{background:var(--paper)}
+.chips input:checked+span{background:var(--yellow);box-shadow:2px 2px 0 var(--ink)}
+.chips input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
+.hp{position:absolute;inset-inline-start:0;top:0;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);opacity:0;pointer-events:none}
+.qsend{width:100%;font-size:19px;padding:14px;margin-top:6px;cursor:pointer;font-family:inherit}
+.qsend:disabled{opacity:.6;cursor:default;transform:none}
+.qerr{color:var(--red);font-weight:600;min-height:1.3em;margin:10px 0 0}
+.qsmall{font-size:14px;color:var(--ink-2);margin:4px 0 0}
+.qsmall a{color:inherit}
+.qdone{border:2.5px solid var(--ink);border-radius:18px;padding:26px 20px;text-align:center;background:var(--paper)}
+.qdone h2{font-family:var(--disp);font-weight:400;font-size:32px;margin:0 0 6px}
+.qdone p{margin:0 0 16px}
+.qalt{text-align:center;margin:20px 0 0}
+.qalt a{color:var(--ink);font-weight:600}
+@media (max-width:480px){.qrow{grid-template-columns:1fr}}
