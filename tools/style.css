@@ -234,3 +234,16 @@ fieldset.qcard legend+*{clear:both}
 .qalt{text-align:center;margin:20px 0 0}
 .qalt a{color:var(--ink);font-weight:600}
 @media (max-width:480px){.qrow{grid-template-columns:1fr}}
+
+.branches{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.br{position:relative;display:block}
+.br input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.br span{display:block;height:100%;border:2px solid var(--ink);border-radius:14px;padding:10px 12px;background:#fff;transition:background .12s}
+.br b{display:flex;align-items:center;gap:6px;font-size:17px}
+.br em{font-style:normal;font-size:12px;font-weight:700;background:var(--red);color:#fff;border-radius:6px;padding:1px 7px}
+.br small{display:block;font-size:14px;color:var(--ink-2);line-height:1.35;margin-top:3px}
+.br-new span{border-width:3px}
+.br:hover span{background:var(--paper)}
+.br input:checked+span{background:var(--yellow);box-shadow:3px 3px 0 var(--ink)}
+.br input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
+@media (max-width:600px){.branches{grid-template-columns:1fr}}
