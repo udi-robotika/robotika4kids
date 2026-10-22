@@ -22,12 +22,21 @@ while queue:
         u=m.group(0).replace("&amp;","&")
         key=re.sub(r'=[^/=]*$','',u)
         imgs.setdefault(key,u)
-mp={}
+import time
+for m in re.finditer(r'https://ssl\.gstatic\.com/atari/images/sociallinks/[\w.]+',"".join(open("raw/pages/"+f).read() for f in os.listdir("raw/pages"))):
+    imgs.setdefault(m.group(0),m.group(0))
+mp=json.load(open("raw/images.json")) if os.path.exists("raw/images.json") else {}
 for key,u in imgs.items():
+    if key in mp and os.path.exists("raw/img/"+mp[key]): continue
     h=hashlib.md5(key.encode()).hexdigest()[:12]
-    full=key+"=w1600"
+    r=None
+    for full in ([key+"=w1600",u,key] if "googleusercontent" in key else [key]):
+        for attempt in range(3):
+            try: r=urllib.request.urlopen(urllib.request.Request(full,headers=UA),timeout=60); break
+            except Exception as e: print("retry",attempt,full[-30:],e); time.sleep(2+attempt*3)
+        if r: break
     try:
-        r=urllib.request.urlopen(urllib.request.Request(full,headers=UA),timeout=60)
+        if r is None: raise Exception("all failed")
         ct=r.headers.get("Content-Type","image/jpeg"); data=r.read()
         ext={"image/png":"png","image/gif":"gif","image/webp":"webp"}.get(ct.split(";")[0],"jpg")
         fn=f"{h}.{ext}"; open("raw/img/"+fn,"wb").write(data); mp[key]=fn
