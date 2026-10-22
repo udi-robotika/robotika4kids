@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}">
+<link rel="canonical" href="{{CANON}}">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESC}}">
+<meta property="og:image" content="{{OGIMG}}">
+<meta property="og:url" content="{{CANON}}">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="burger" aria-label="תפריט" aria-expanded="false"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"/></svg></button>
+  <a class="logo" href="/רובוטיקה-ילדים-נוער">Robotika4Kids</a>
+</header>
+<aside class="side" id="side">
+  <a class="logo" href="/רובוטיקה-ילדים-נוער">Robotika4Kids</a>
+  <nav aria-label="ניווט ראשי">{{NAV}}</nav>
+</aside>
+<div class="scrim"></div>
+<main>
+{{BODY}}
+<footer>{{FOOTER}}</footer>
+</main>
+<script>
+document.querySelectorAll('.exp').forEach(b=>b.onclick=()=>{const li=b.closest('li');li.classList.toggle('open');b.setAttribute('aria-expanded',li.classList.contains('open'))});
+const bg=document.querySelector('.burger');bg.onclick=()=>{document.body.classList.toggle('menu');bg.setAttribute('aria-expanded',document.body.classList.contains('menu'))};
+document.querySelector('.scrim').onclick=()=>document.body.classList.remove('menu');
+</script>
+</body>
+</html>
