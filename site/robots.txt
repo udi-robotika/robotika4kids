@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.robotika4kids.co.il/sitemap.xml
