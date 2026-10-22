@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>פניות הורים · /kids</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--ink:#141414;--soft:#5a5a5a;--line:#e2e2e2;--yellow:#FFC400;--card:#f6f6f4;--green:#25A35A;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121212;--ink:#f3f3f3;--soft:#a8a8a8;--line:#2f2f2f;--card:#1c1c1c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121212;--ink:#f3f3f3;--soft:#a8a8a8;--line:#2f2f2f;--card:#1c1c1c;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Heebo",system-ui,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:720px;margin:0 auto;padding:8px 14px 40px}
+.top{display:flex;align-items:center;gap:8px;font-weight:700;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.top small{color:var(--soft);font-weight:400;margin-inline-start:auto}
+.tabs{display:flex;gap:6px;margin:10px 0}
+.tabs button,.b{font:inherit;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--yellow);border-color:var(--yellow);color:#141414;font-weight:700}
+.card{background:var(--card);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.card.h{opacity:.6}
+.card h3{margin:0;font-size:1.1rem}
+.meta{color:var(--soft);font-size:.85rem}
+.card dl{margin:6px 0;display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:.93rem}
+.card dt{color:var(--soft)}.card dd{margin:0}
+.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.acts a{text-decoration:none}
+.b.wa{background:var(--green);border-color:var(--green);color:#fff}
+.login{max-width:300px;margin:40px auto;display:grid;gap:8px}
+.login input{font:inherit;padding:10px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+textarea{width:100%;font:inherit;border:1.5px solid var(--line);border-radius:10px;padding:6px 8px;background:var(--bg);color:var(--ink);margin-top:6px}
+.empty{color:var(--soft);text-align:center;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">📋 פניות הורים <small id="cnt"></small></div>
+  <div id="app"></div>
+</div>
+<script>
+var items=[],tab='new',app=document.getElementById('app');
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function intl(p){p=String(p).replace(/\D/g,'');return p.indexOf('0')===0?'972'+p.slice(1):p}
+async function load(){
+  var r=await fetch('/api/kids',{cache:'no-store'});
+  if(r.status===401){return login()}
+  items=(await r.json()).items||[];render();
+}
+function login(){
+  app.innerHTML='<div class="login"><b>קוד כניסה</b><input id="c" type="password" inputmode="numeric" autocomplete="current-password"><button class="b" id="go">כניסה</button><span id="m" class="meta"></span></div>';
+  var go=async function(){var r=await fetch('/api/kids',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'login',code:document.getElementById('c').value})});
+    if(r.ok)load();else document.getElementById('m').textContent='קוד שגוי'};
+  document.getElementById('go').onclick=go;document.getElementById('c').onkeydown=function(e){if(e.key==='Enter')go()};
+}
+function render(){
+  var nNew=items.filter(function(x){return x.status!=='handled'}).length;
+  document.getElementById('cnt').textContent=nNew+' חדשות · '+items.length+' סה״כ';
+  var list=items.filter(function(x){return tab==='all'||(tab==='new'?x.status!=='handled':x.status==='handled')});
+  var h='<div class="tabs">'+[['new','חדשות'],['handled','טופלו'],['all','הכול']].map(function(t){return '<button data-t="'+t[0]+'" aria-pressed="'+(tab===t[0])+'">'+t[1]+'</button>'}).join('')+'</div>';
+  if(!list.length)h+='<p class="empty">אין פניות כאן</p>';
+  list.forEach(function(x){
+    var d=new Date(x.created).toLocaleString('he-IL',{day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit'});
+    var rows=[['טלפון',x.phone],['גיל',(x.ages||[]).join(', ')],['מעניין',(x.interest||[]).join(', ')],['ימים',(x.days||[]).join(', ')],['שעות',(x.hours||[]).join(', ')],['ילדים',x.kids],['שם הילד/ה',x.child],['ניסיון',x.exp],['עיר',x.city],['מקור',x.source],['הערות',x.notes]].filter(function(r){return r[1]});
+    var wa='היי'+(x.parent?' '+x.parent.split(' ')[0]:'')+', כאן אודי ממעבדה 8 🙂 קיבלתי את הפרטים שהשארת באתר על רובוטיקה לילדים.';
+    h+='<div class="card'+(x.status==='handled'?' h':'')+'"><h3>'+esc(x.parent||'(ללא שם)')+'</h3><div class="meta">'+d+'</div><dl>'+rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd>'}).join('')+'</dl>'+
+      '<textarea rows="2" placeholder="הערה פנימית" data-id="'+x.id+'">'+esc(x.note)+'</textarea>'+
+      '<div class="acts"><a class="b wa" href="https://wa.me/'+intl(x.phone)+'?text='+encodeURIComponent(wa)+'" target="_blank" rel="noopener">וואטסאפ</a><a class="b" href="tel:'+esc(x.phone)+'">התקשרות</a>'+
+      '<button class="b" data-s="'+x.id+'">'+(x.status==='handled'?'החזרה לחדשות':'סימון כטופל ✓')+'</button></div></div>';
+  });
+  app.innerHTML=h;
+  app.querySelectorAll('[data-t]').forEach(function(b){b.onclick=function(){tab=b.dataset.t;render()}});
+  app.querySelectorAll('[data-s]').forEach(function(b){b.onclick=function(){var x=items.find(function(i){return i.id===b.dataset.s});upd(x,{status:x.status==='handled'?'new':'handled'})}});
+  app.querySelectorAll('textarea[data-id]').forEach(function(t){t.onchange=function(){var x=items.find(function(i){return i.id===t.dataset.id});upd(x,{note:t.value},true)}});
+}
+async function upd(x,ch,quiet){
+  var r=await fetch('/api/kids',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({action:'status',id:x.id},ch))});
+  if(r.ok){Object.assign(x,(await r.json()).item);if(!quiet)render()}else alert('השמירה נכשלה');
+}
+load();
+</script>
+</body>
+</html>

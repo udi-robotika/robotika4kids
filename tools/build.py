@@ -164,6 +164,9 @@ for f in sorted(glob.glob(f"{RAW}/pages/*.html")):
     d=OUT+(path if path!="/" else "/"); os.makedirs(d,exist_ok=True)
     open(os.path.join(d,"index.html"),"w").write(page); pages.append(path)
 shutil.copy(os.path.join(ROOT,"tools","style.css"),f"{OUT}/style.css")
+# extra hand-made pages (extras/ is copied as-is on top of the build)
+EX=os.path.join(ROOT,"extras")
+if os.path.isdir(EX): shutil.copytree(EX,OUT,dirs_exist_ok=True); pages.append("/kids")
 # sitemap
 open(f"{OUT}/sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+"".join(f"<url><loc>https://www.robotika4kids.co.il{urllib.parse.quote(p)}</loc></url>" for p in pages)+"</urlset>")
 open(f"{OUT}/robots.txt","w").write("User-agent: *\nAllow: /\nSitemap: https://www.robotika4kids.co.il/sitemap.xml\n")
