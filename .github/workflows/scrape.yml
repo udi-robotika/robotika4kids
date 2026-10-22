@@ -1,5 +1,7 @@
 name: scrape
-on: workflow_dispatch
+on:
+  push:
+    paths: ["tools/scrape.py", ".github/workflows/scrape.yml"]
 permissions:
   contents: write
 jobs:
