@@ -27,6 +27,13 @@ for key,fn in imgmap.items():
     except Exception as e: print("img?",fn,e)
     shutil.copy(src,f"{OUT}/img/{fn}"); outname[key]=fn
 
+ICONS=set()
+for fn in os.listdir(f"{OUT}/img"):
+    try:
+        w,h=Image.open(f"{OUT}/img/{fn}").size
+        if max(w,h)<=230: ICONS.add("/img/"+fn)
+    except Exception: pass
+
 def local_img(u):
     k=re.sub(r'=[^/=]*$','',u.replace("&amp;","&"))
     return "/img/"+outname[k] if k in outname else u
@@ -48,7 +55,9 @@ def clean(el):
         cls=t.get("class",[]) or []
         new=[TEXTCLS[c] for c in cls if c in TEXTCLS]
         if "FKF6mc" in cls: new.append("btn")
-        if t.name=="img" and t.get("src"): t["src"]=local_img(t["src"]); t["loading"]="lazy"; t["alt"]=t.get("alt","")
+        if t.name=="img" and t.get("src"):
+            t["src"]=local_img(t["src"]); t["loading"]="lazy"; t["alt"]=t.get("alt","")
+            if t["src"] in ICONS: new.append("ico")
         if t.name=="a": t["href"]=fix_href(t.get("href"))
         if t.name=="iframe":
             src=t.get("src","")
@@ -115,18 +124,25 @@ for li in home.select("nav ul.jYxBte > li"):
     kids=[(x.get_text(strip=True),x["href"]) for x in li.find_all("a",attrs={"data-level":"2"})]
     nav.append((a.get_text(strip=True),a["href"],kids))
 
+LABEL={"רובוטיקה-ילדים-נוער":"בית","summer-2026":"קיץ 2026"}
+def lbl(t): return LABEL.get(t,t.replace("-"," "))
 def nav_html(cur):
     out=[]
     for t,h,kids in nav:
+        t=lbl(t)
+        if h=="/רובוטיקה-ילדים-נוער": h="/"
         act=' class="active"' if h==cur else ""
         if kids:
-            open_=" open" if cur==h or any(k[1]==cur for k in kids) else ""
+            open_=" cur" if cur==h or any(k[1]==cur for k in kids) else ""
             sub="".join(f'<li><a href="{kh}"{" class=\"active\"" if kh==cur else ""}>{kt}</a></li>' for kt,kh in kids)
-            out.append(f'<li class="has-sub{open_}"><div class="nav-row"><a href="{h}"{act}>{t}</a><button class="exp" aria-label="פתח תת-תפריט" aria-expanded="{"true" if open_ else "false"}"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z" fill="currentColor"/></svg></button></div><ul>{sub}</ul></li>')
+            out.append(f'<li class="has-sub{open_}"><div class="nav-row"><a href="{h}"{act}>{t}</a><button class="exp" aria-label="פתח תת-תפריט" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z" fill="currentColor"/></svg></button></div><ul>{sub}</ul></li>')
         else: out.append(f'<li><a href="{h}"{act}>{t}</a></li>')
     return "<ul>"+"".join(out)+"</ul>"
 
 TPL=open(os.path.join(ROOT,"tools","template.html")).read()
+HOME=open(os.path.join(ROOT,"tools","home.html")).read()
+import hashlib; VER=hashlib.md5(open(os.path.join(ROOT,"tools","style.css"),"rb").read()).hexdigest()[:8]
+shutil.copytree(os.path.join(ROOT,"tools","fonts"),f"{OUT}/fonts")
 footer=None; pages=[]
 for f in sorted(glob.glob(f"{RAW}/pages/*.html")):
     name=os.path.basename(f)[:-5]
@@ -135,15 +151,16 @@ for f in sorted(glob.glob(f"{RAW}/pages/*.html")):
     foot=s.find("footer",class_="yxgWrb")
     if foot and footer is None: footer="".join(render_section(x) for x in foot.find_all("section"))
     if foot: foot.decompose()
-    body="".join(render_section(x) for x in s.find_all("section"))
+    if path in ("/","/רובוטיקה-ילדים-נוער"): body=HOME; bodycls="home"
+    else: body='<div class="legacy">'+"".join(render_section(x) for x in s.find_all("section"))+'</div>'; bodycls="page"
     title=s.title.get_text() if s.title else "Robotika4Kids"
     og=lambda p:(s.find("meta",attrs={"property":p}) or {}).get("content","")
     desc=og("og:description"); ogimg=local_img(og("og:image")) if og("og:image") else ""
-    navcur="/רובוטיקה-ילדים-נוער" if path=="/" else path
+    navcur="/" if path=="/רובוטיקה-ילדים-נוער" else path
     page=(TPL.replace("{{TITLE}}",html.escape(title)).replace("{{DESC}}",html.escape(desc))
           .replace("{{OGIMG}}",("https://www.robotika4kids.co.il"+ogimg) if ogimg.startswith("/") else ogimg)
           .replace("{{CANON}}","https://www.robotika4kids.co.il"+urllib.parse.quote(path))
-          .replace("{{NAV}}",nav_html(navcur)).replace("{{BODY}}",body).replace("{{FOOTER}}",footer or ""))
+          .replace("{{NAV}}",nav_html(navcur)).replace("{{BODYCLS}}",bodycls).replace("{{VER}}",VER).replace("{{BODY}}",body).replace("{{FOOTER}}",footer or ""))
     d=OUT+(path if path!="/" else "/"); os.makedirs(d,exist_ok=True)
     open(os.path.join(d,"index.html"),"w").write(page); pages.append(path)
 shutil.copy(os.path.join(ROOT,"tools","style.css"),f"{OUT}/style.css")
