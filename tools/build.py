@@ -122,6 +122,7 @@ nav=[]
 for li in home.select("nav ul.jYxBte > li"):
     a=li.find("a",attrs={"data-level":"1"})
     kids=[(x.get_text(strip=True),x["href"]) for x in li.find_all("a",attrs={"data-level":"2"})]
+    if a["href"]=="/summer-2026": continue  # summer over, hidden from menu
     nav.append((a.get_text(strip=True),a["href"],kids))
 
 LABEL={"רובוטיקה-ילדים-נוער":"בית","summer-2026":"קיץ 2026"}
