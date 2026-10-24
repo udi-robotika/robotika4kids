@@ -248,3 +248,7 @@ fieldset.qcard legend+*{clear:both}
 .br input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
 @media (max-width:600px){.branches{grid-template-columns:1fr}}
 .ftr-new{display:inline-block;font-size:12px;font-weight:700;background:#FFC21A;color:#0F1B3D;border-radius:999px;padding:1px 8px;margin-inline-start:4px;vertical-align:1px}
+
+.qlink{text-align:center;font-size:13px;color:#6b7280;margin-top:18px}
+.qlink bdi{user-select:all;color:#0F1B3D}
+.qlink button{font:inherit;font-size:12px;margin-inline-start:6px;padding:2px 10px;border:1px solid #0F1B3D;border-radius:999px;background:#fff;color:#0F1B3D;cursor:pointer}
