@@ -21,17 +21,7 @@
       "permanent": false
     },
     {
-      "source": "/kids",
-      "destination": "/%D7%94%D7%A9%D7%90%D7%99%D7%A8%D7%95-%D7%A4%D7%A8%D7%98%D7%99%D7%9D",
-      "permanent": false
-    },
-    {
       "source": "/join",
-      "destination": "/%D7%94%D7%A9%D7%90%D7%99%D7%A8%D7%95-%D7%A4%D7%A8%D7%98%D7%99%D7%9D",
-      "permanent": false
-    },
-    {
-      "source": "/signup",
       "destination": "/%D7%94%D7%A9%D7%90%D7%99%D7%A8%D7%95-%D7%A4%D7%A8%D7%98%D7%99%D7%9D",
       "permanent": false
     }
