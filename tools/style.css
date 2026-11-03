@@ -294,6 +294,19 @@ fieldset.qcard legend+*{clear:both}
 .lp-steps .qalt{text-align:start}
 .lp-steps .qlink{text-align:start}
 .lp-sticky{display:none}
+.lp-facts li.lp-loc{padding:0;background:none}
+.lp-loc a{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;text-decoration:none;padding:5px 14px 5px 16px;border-radius:999px;box-shadow:3px 3px 0 #fff;transition:transform .15s,box-shadow .15s}
+.lp-loc a u{text-underline-offset:3px;font-weight:700;color:var(--yellow)}
+.lp-loc a:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #fff}
+.lp-loc a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.lp-loc a{transition:none}}
+.lp-where{border-top:3px solid var(--ink);scroll-margin-top:84px}
+.lp-map{border:2.5px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:8px 8px 0 var(--ink);background:var(--paper)}
+.lp-map iframe{display:block;width:100%;height:clamp(260px,40vw,400px);border:0}
+.lp-nav{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.lp-nav .b{font-size:18px;padding:12px 26px}
+.lp-gm{background:#fff;color:var(--ink);border:2.5px solid var(--ink)}
 @media (max-width:900px){
   .lp-in{grid-template-columns:1fr;gap:20px;padding-top:16px}
   .lp-txt h1{max-width:none}
