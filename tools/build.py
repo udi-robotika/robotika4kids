@@ -145,6 +145,8 @@ TPL=open(os.path.join(ROOT,"tools","template.html")).read()
 HOME=open(os.path.join(ROOT,"tools","home.html")).read()
 FORM=open(os.path.join(ROOT,"tools","form.html")).read()
 CLASS=open(os.path.join(ROOT,"tools","class.html")).read()
+CONTACT=open(os.path.join(ROOT,"tools","contact.html")).read()
+import json; LOCFIX=json.load(open(os.path.join(ROOT,"tools","loc_fixes.json")))  # Dizengoff -> Ramat Gan (Nov 2026)
 import hashlib; VER=hashlib.md5(open(os.path.join(ROOT,"tools","style.css"),"rb").read()).hexdigest()[:8]
 shutil.copytree(os.path.join(ROOT,"tools","fonts"),f"{OUT}/fonts")
 footer=None; pages=[]
@@ -158,11 +160,13 @@ for f in sorted(glob.glob(f"{RAW}/pages/*.html")):
     if path in ("/","/רובוטיקה-ילדים-נוער"): body=HOME; bodycls="home"
     elif path=="/השאירו-פרטים": body=FORM; bodycls="form"
     elif path=="/חוג-רובוטיקה": body=CLASS; bodycls="form"
+    elif path=="/צור-קשר": body=CONTACT; bodycls="page"
     else: body='<div class="legacy">'+"".join(render_section(x) for x in s.find_all("section"))+'</div>'; bodycls="page"
     title=s.title.get_text() if s.title else "Robotika4Kids"
     og=lambda p:(s.find("meta",attrs={"property":p}) or {}).get("content","")
     desc=og("og:description")
     if path=="/חוג-רובוטיקה": desc="חוג רובוטיקה שבועי לילדים בגילאי 7–12 ברמת גן, צמוד למגדלי ב.ס.ר. בונים ומתכנתים רובוטים עם ארדואינו. חוזרים לחוגים מ-15.11."; title="חוג רובוטיקה לילדים ברמת גן | Robotika4Kids"
+    if path=="/צור-קשר": desc="המרכז לרובוטיקה לילדים: דרך בן גוריון 8, רמת גן (קומה 5), מול רולדין. טלפון 054-5639120."
     if path=="/השאירו-פרטים": desc="חוג רובוטיקה לגילאי 7–12 ברמת גן, ליד מגדלי ב.ס.ר. בונים מכוניות חכמות ורובוטים ולומדים לתכנת. השאירו פרטים ונמצא לכם קבוצה."; title="חוג רובוטיקה לילדים ברמת גן | Robotika4Kids"
     ogimg=local_img(og("og:image")) if og("og:image") else ""
     navcur="/" if path=="/רובוטיקה-ילדים-נוער" else path
@@ -170,6 +174,7 @@ for f in sorted(glob.glob(f"{RAW}/pages/*.html")):
           .replace("{{OGIMG}}",("https://www.robotika4kids.co.il"+ogimg) if ogimg.startswith("/") else ogimg)
           .replace("{{CANON}}","https://www.robotika4kids.co.il"+urllib.parse.quote(path))
           .replace("{{NAV}}",nav_html(navcur)).replace("{{BODYCLS}}",bodycls).replace("{{VER}}",VER).replace("{{BODY}}",body).replace("{{FOOTER}}",footer or ""))
+    for a,b in LOCFIX: page=page.replace(a,b)
     d=OUT+(path if path!="/" else "/"); os.makedirs(d,exist_ok=True)
     open(os.path.join(d,"index.html"),"w").write(page); pages.append(path)
 shutil.copy(os.path.join(ROOT,"tools","style.css"),f"{OUT}/style.css")
