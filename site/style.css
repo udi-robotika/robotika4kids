@@ -262,6 +262,9 @@ fieldset.qcard legend+*{clear:both}
 .lp-facts li{background:var(--ink);color:#fff;font-weight:600;font-size:16px;padding:5px 14px;border-radius:999px}
 .lp-pic{margin:0;max-width:430px}
 .lp-pic img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border:3px solid var(--ink);border-radius:28px;box-shadow:10px 10px 0 var(--ink);transform:rotate(-2deg)}
+.lp-pic{position:relative;max-width:460px;padding-bottom:70px}
+.lp-pic img:first-child{width:84%}
+.lp-pic .lp-pic2{position:absolute;left:0;bottom:0;width:50%;border-radius:22px;box-shadow:7px 7px 0 var(--ink);transform:rotate(3deg)}
 .lp-card{box-shadow:8px 8px 0 var(--ink);padding:20px 20px 16px;margin:0}
 .lp-card h2{font-size:28px;margin:0 0 4px}
 .lp-cardsub{margin:0 0 14px;color:var(--ink-2);font-size:16px;line-height:1.45}
