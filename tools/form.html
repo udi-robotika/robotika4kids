@@ -1,111 +1,131 @@
-<section class="fhead">
-  <div class="fhead-in">
-    <h1>השאירו פרטים</h1>
-    <p>ספרו לנו קצת על הילד או הילדה ומה מעניין אתכם, ונחזור אליכם עם קבוצה מתאימה. רק הטלפון חובה, כל השאר עוזר לנו להתאים.</p>
-  </div>
-</section>
-<section class="fbody">
-  <form id="f" class="qf" novalidate>
-    <div class="qcard">
-      <h2>נעים להכיר</h2>
-      <div class="qrow">
-        <div><label for="parent">שם ההורה</label><input type="text" id="parent" name="parent" autocomplete="name"></div>
-        <div><label for="phone">טלפון <span class="must">חובה</span></label><input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" dir="ltr" required></div>
-      </div>
+<section class="lp-hero">
+  <div class="lp-in">
+    <div class="lp-txt">
+      <h1>חוג רובוטיקה שהילדים מחכים לו כל שבוע</h1>
+      <p class="lp-lead">בונים מכוניות חכמות ורובוטים אמיתיים, ולומדים לתכנת אותם בעצמם.</p>
+      <ul class="lp-facts">
+        <li>לגילאי 7–12</li>
+        <li>לא צריך שום ניסיון</li>
+        <li>רמת גן ודיזנגוף סנטר</li>
+      </ul>
+      <figure class="lp-pic"><img src="/img/d02a36e54390.jpg" alt="ילדה מרכיבה מכונית רובוטית עם מברג" width="600" height="600" fetchpriority="high"></figure>
     </div>
 
-    <fieldset class="qcard">
-      <legend>איפה נוח לכם?</legend>
-      <div class="branches" data-name="branch">
-        <label class="br br-new"><input type="radio" name="branch" value="רמת גן"><span><b>רמת גן <em>חדש</em></b><small>דרך בן גוריון 8. המרכז החדש שלנו, גדול ומאובזר</small></span></label>
-        <label class="br"><input type="radio" name="branch" value="דיזנגוף סנטר"><span><b>דיזנגוף סנטר</b><small>תל אביב</small></span></label>
-        <label class="br"><input type="radio" name="branch" value="שניהם מתאימים"><span><b>שניהם מתאימים</b><small>נתאים לכם את הקבוצה הכי נוחה</small></span></label>
-      </div>
-    </fieldset>
+    <div class="lp-formwrap" id="join">
+      <form id="f" class="qf" novalidate>
+        <div class="qcard lp-card">
+          <h2>נמצא לכם קבוצה מתאימה</h2>
+          <p class="lp-cardsub">משאירים טלפון, ואנחנו חוזרים עם קבוצה לפי הגיל והמיקום.</p>
+          <div class="qrow">
+            <div><label for="parent">שם ההורה</label><input type="text" id="parent" name="parent" autocomplete="name"></div>
+            <div><label for="phone">טלפון <span class="must">חובה</span></label><input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" dir="ltr" required></div>
+          </div>
 
-    <fieldset class="qcard">
-      <legend>בן או בת כמה?</legend>
-      <div class="chips" data-name="ages">
-        <label><input type="checkbox" value="גן"><span>גן</span></label>
-        <label><input type="checkbox" value="א׳–ב׳"><span>א׳–ב׳</span></label>
-        <label><input type="checkbox" value="ג׳–ד׳"><span>ג׳–ד׳</span></label>
-        <label><input type="checkbox" value="ה׳–ו׳"><span>ה׳–ו׳</span></label>
-        <label><input type="checkbox" value="ז׳–ח׳"><span>ז׳–ח׳</span></label>
-        <label><input type="checkbox" value="ט׳ ומעלה"><span>ט׳ ומעלה</span></label>
-      </div>
-    </fieldset>
+          <p class="qsub lp-q">איפה נוח לכם?</p>
+          <div class="branches" data-name="branch">
+            <label class="br br-new"><input type="radio" name="branch" value="רמת גן"><span><b>רמת גן <em>חדש</em></b><small>דרך בן גוריון 8</small></span></label>
+            <label class="br"><input type="radio" name="branch" value="דיזנגוף סנטר"><span><b>דיזנגוף סנטר</b><small>תל אביב</small></span></label>
+            <label class="br"><input type="radio" name="branch" value="שניהם מתאימים"><span><b>שניהם</b><small>מה שנוח יותר</small></span></label>
+          </div>
 
-    <fieldset class="qcard">
-      <legend>מה מעניין אתכם?</legend>
-      <div class="chips" data-name="interest">
-        <label><input type="checkbox" value="חוג שבועי"><span>חוג שבועי</span></label>
-        <label><input type="checkbox" value="סדנה חד־פעמית"><span>סדנה חד-פעמית</span></label>
-        <label><input type="checkbox" value="שיעור פרטי"><span>שיעור פרטי</span></label>
-        <label><input type="checkbox" value="קייטנה בחופשה"><span>קייטנה בחופשה</span></label>
-        <label><input type="checkbox" value="יום הולדת"><span>יום הולדת</span></label>
-        <label><input type="checkbox" value="עוד לא יודעים"><span>עוד לא יודעים</span></label>
-      </div>
-    </fieldset>
+          <p class="qsub lp-q">בן או בת כמה?</p>
+          <div class="chips" data-name="ages">
+            <label><input type="checkbox" value="גן"><span>גן</span></label>
+            <label><input type="checkbox" value="א׳–ב׳"><span>א׳–ב׳</span></label>
+            <label><input type="checkbox" value="ג׳–ד׳"><span>ג׳–ד׳</span></label>
+            <label><input type="checkbox" value="ה׳–ו׳"><span>ה׳–ו׳</span></label>
+            <label><input type="checkbox" value="ז׳–ח׳"><span>ז׳–ח׳</span></label>
+            <label><input type="checkbox" value="ט׳ ומעלה"><span>ט׳ ומעלה</span></label>
+          </div>
 
-    <fieldset class="qcard">
-      <legend>מתי מתאים לכם?</legend>
-      <p class="qsub">ימים</p>
-      <div class="chips" data-name="days">
-        <label><input type="checkbox" value="א׳"><span>א׳</span></label>
-        <label><input type="checkbox" value="ב׳"><span>ב׳</span></label>
-        <label><input type="checkbox" value="ג׳"><span>ג׳</span></label>
-        <label><input type="checkbox" value="ד׳"><span>ד׳</span></label>
-        <label><input type="checkbox" value="ה׳"><span>ה׳</span></label>
-        <label><input type="checkbox" value="ו׳"><span>ו׳</span></label>
-      </div>
-      <p class="qsub">שעות, בערך</p>
-      <div class="chips" data-name="hours">
-        <label><input type="checkbox" value="14:00–15:00"><span><bdi dir="ltr">14:00–15:00</bdi></span></label>
-        <label><input type="checkbox" value="15:00–16:00"><span><bdi dir="ltr">15:00–16:00</bdi></span></label>
-        <label><input type="checkbox" value="16:00–17:00"><span><bdi dir="ltr">16:00–17:00</bdi></span></label>
-        <label><input type="checkbox" value="17:00–18:00"><span><bdi dir="ltr">17:00–18:00</bdi></span></label>
-        <label><input type="checkbox" value="גמיש"><span>גמיש</span></label>
-      </div>
-    </fieldset>
+          <details class="lp-more">
+            <summary>רוצים לספר עוד? <span>לא חובה</span></summary>
+            <p class="qsub">מה מעניין אתכם?</p>
+            <div class="chips" data-name="interest">
+              <label><input type="checkbox" value="חוג שבועי"><span>חוג שבועי</span></label>
+              <label><input type="checkbox" value="סדנה חד־פעמית"><span>סדנה חד-פעמית</span></label>
+              <label><input type="checkbox" value="שיעור פרטי"><span>שיעור פרטי</span></label>
+              <label><input type="checkbox" value="קייטנה בחופשה"><span>קייטנה בחופשה</span></label>
+              <label><input type="checkbox" value="יום הולדת"><span>יום הולדת</span></label>
+            </div>
+            <p class="qsub">ימים שמתאימים</p>
+            <div class="chips" data-name="days">
+              <label><input type="checkbox" value="א׳"><span>א׳</span></label>
+              <label><input type="checkbox" value="ב׳"><span>ב׳</span></label>
+              <label><input type="checkbox" value="ג׳"><span>ג׳</span></label>
+              <label><input type="checkbox" value="ד׳"><span>ד׳</span></label>
+              <label><input type="checkbox" value="ה׳"><span>ה׳</span></label>
+              <label><input type="checkbox" value="ו׳"><span>ו׳</span></label>
+            </div>
+            <p class="qsub">שעות, בערך</p>
+            <div class="chips" data-name="hours">
+              <label><input type="checkbox" value="14:00–15:00"><span><bdi dir="ltr">14:00–15:00</bdi></span></label>
+              <label><input type="checkbox" value="15:00–16:00"><span><bdi dir="ltr">15:00–16:00</bdi></span></label>
+              <label><input type="checkbox" value="16:00–17:00"><span><bdi dir="ltr">16:00–17:00</bdi></span></label>
+              <label><input type="checkbox" value="17:00–18:00"><span><bdi dir="ltr">17:00–18:00</bdi></span></label>
+              <label><input type="checkbox" value="גמיש"><span>גמיש</span></label>
+            </div>
+            <div class="qrow">
+              <div><label for="child">שם הילד/ה</label><input type="text" id="child" name="child"></div>
+              <div><label for="city">עיר או שכונה</label><input type="text" id="city" name="city" autocomplete="address-level2"></div>
+            </div>
+            <div class="qf1"><label for="notes">משהו שחשוב שנדע?</label><textarea id="notes" name="notes" placeholder="תחומי עניין, שאלות"></textarea></div>
+          </details>
 
-    <div class="qcard">
-      <h2>עוד קצת עליכם</h2>
-      <div class="qrow">
-        <div><label for="child">שם הילד/ה</label><input type="text" id="child" name="child"></div>
-        <div><label for="city">עיר או שכונה</label><input type="text" id="city" name="city" autocomplete="address-level2"></div>
+          <div class="hp" aria-hidden="true"><label>אתר<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <button class="b b-pri qsend" type="submit" id="sendBtn">מצאו לי קבוצה</button>
+          <p class="qerr" id="err" role="alert"></p>
+          <p class="qsmall">נשתמש בפרטים רק כדי לחזור אליכם. <a href="https://www.robotika.co.il/privacy-policy">מדיניות פרטיות</a></p>
+        </div>
+      </form>
+      <div class="qdone" id="done" tabindex="-1" hidden>
+        <h2>קיבלנו, תודה!</h2>
+        <p>נחזור אליכם בהקדם. ממהרים? אפשר לשלוח לנו את אותם פרטים גם בוואטסאפ.</p>
+        <a class="b b-pri" id="waBtn" href="https://wa.me/972545639120" target="_blank" rel="noopener">שליחה בוואטסאפ</a>
       </div>
-      <div class="qrow">
-        <div><label for="kids">כמה ילדים?</label><select id="kids" name="kids"><option value="">בחרו</option><option value="1">1</option><option value="2">2</option><option value="3+">3 ומעלה</option></select></div>
-        <div><label for="exp">ניסיון קודם</label><select id="exp" name="exp"><option value="">בחרו</option><option>אין, מתחילים</option><option>קצת</option><option>יש ניסיון</option></select></div>
-      </div>
-      <div class="qf1"><label for="source">איך שמעתם עלינו?</label><select id="source" name="source"><option value="">בחרו</option><option>מכירים אותנו מדיזנגוף סנטר</option><option>חבר/ה המליצו</option><option>פייסבוק / אינסטגרם</option><option>גוגל</option><option>מודעה / פלייר</option><option>הייתי כבר בסדנה</option><option>אחר</option></select></div>
-      <div class="qf1"><label for="notes">משהו שחשוב שנדע?</label><textarea id="notes" name="notes" placeholder="תחומי עניין, שאלות, שעות שמתאימות"></textarea></div>
     </div>
-
-    <div class="hp" aria-hidden="true"><label>אתר<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-    <button class="b b-pri qsend" type="submit" id="sendBtn">שליחת הפרטים</button>
-    <p class="qerr" id="err" role="alert"></p>
-    <p class="qsmall">נשתמש בפרטים רק כדי לחזור אליכם לגבי חוגים וסדנאות. <a href="https://www.robotika.co.il/privacy-policy">מדיניות פרטיות</a></p>
-  </form>
-
-  <div class="qdone" id="done" tabindex="-1" hidden>
-    <h2>קיבלנו, תודה!</h2>
-    <p>נחזור אליכם בהקדם. ממהרים? אפשר לשלוח לנו את אותם פרטים גם בוואטסאפ.</p>
-    <a class="b b-pri" id="waBtn" href="https://wa.me/972545639120" target="_blank" rel="noopener">שליחה בוואטסאפ</a>
   </div>
-  <p class="qalt">מעדיפים לדבר? <a href="tel:+972545639120" dir="ltr">054-5639120</a> או <a href="https://wa.me/972545639120" target="_blank" rel="noopener">וואטסאפ</a></p>
-  <p class="qlink">קישור לעמוד: <bdi dir="ltr" id="qurl">https://www.robotika4kids.co.il/join</bdi> <button type="button" id="qcopy">העתקה</button></p>
-<script>document.getElementById('qcopy').onclick=function(){var b=this;navigator.clipboard.writeText(document.getElementById('qurl').textContent).then(function(){b.textContent='הועתק ✓';setTimeout(function(){b.textContent='העתקה'},1500)})};</script>
 </section>
+
+<section class="lp-build">
+  <div class="lp-sec">
+    <h2>מה בונים בחוג</h2>
+    <p class="lp-sub">כל ילד יוצא עם פרויקט שעובד, שהוא בנה, חיווט ותכנת.</p>
+    <div class="lp-grid">
+      <figure><img src="/img/c9fce20d016a.jpg" alt="שתי מכוניות רובוטיות עם שלטים" loading="lazy"><figcaption>מכוניות חכמות עם שלט</figcaption></figure>
+      <figure><img src="/img/4af269af8165.webp" alt="ילד מלחים רכיבים על רובוט" loading="lazy"><figcaption>הרכבה וחיווט בידיים</figcaption></figure>
+      <figure><img src="/img/b4822a809593.webp" alt="ילד מתכנת במחשב נייד" loading="lazy"><figcaption>תכנות אמיתי, צעד אחרי צעד</figcaption></figure>
+      <figure><img src="/img/4002d2159854.jpg" alt="רובוט עם חיישנים" loading="lazy"><figcaption>רובוטים עם חיישנים</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="lp-steps">
+  <div class="lp-sec">
+    <h2>איך מתחילים</h2>
+    <ol>
+      <li><b>משאירים פרטים</b><span>שם, טלפון וגיל. לוקח חצי דקה.</span></li>
+      <li><b>אנחנו מתקשרים</b><span>מתאימים יחד קבוצה לפי גיל, מיקום ושעה.</span></li>
+      <li><b>מתחילים לבנות</b><span>מהמפגש הראשון כבר יש משהו שזז.</span></li>
+    </ol>
+    <a class="b b-pri lp-cta" href="#join">מצאו לי קבוצה</a>
+    <p class="qalt">מעדיפים לדבר? <a href="tel:+972545639120" dir="ltr">054-5639120</a> או <a href="https://wa.me/972545639120" target="_blank" rel="noopener">וואטסאפ</a></p>
+    <p class="qlink">קישור לעמוד: <bdi dir="ltr" id="qurl">https://www.robotika4kids.co.il/join</bdi> <button type="button" id="qcopy">העתקה</button></p>
+  </div>
+</section>
+
+<a class="lp-sticky" href="#join" id="sticky">מצאו לי קבוצה</a>
+
 <script>
 (function(){
   var API='https://www.robotika.co.il/api/kids';
   var f=document.getElementById('f'),btn=document.getElementById('sendBtn'),err=document.getElementById('err');
   function chips(n){return Array.prototype.map.call(document.querySelectorAll('[data-name="'+n+'"] input:checked'),function(i){return i.value})}
+  function v(n){return f[n]?String(f[n].value||'').trim():''}
   f.addEventListener('submit',async function(e){
     e.preventDefault();err.textContent='';
-    var d={parent:f.parent.value.trim(),phone:f.phone.value.trim(),child:f.child.value.trim(),city:f.city.value.trim(),
-      kids:f.kids.value,branch:(document.querySelector('input[name=branch]:checked')||{}).value||'',exp:f.exp.value,source:f.source.value,notes:f.notes.value.trim(),website:f.website.value,
+    var d={parent:v('parent'),phone:v('phone'),child:v('child'),city:v('city'),kids:'',
+      branch:(document.querySelector('input[name=branch]:checked')||{}).value||'',exp:'',source:'',notes:v('notes'),website:f.website.value,
       ages:chips('ages'),interest:chips('interest'),days:chips('days'),hours:chips('hours')};
     if(d.phone.replace(/\D/g,'').length<9){err.textContent='חסר מספר טלפון תקין';f.phone.focus();return}
     btn.disabled=true;btn.textContent='שולחים…';
@@ -117,8 +137,11 @@
       f.hidden=true;var dn=document.getElementById('done');dn.hidden=false;dn.focus();
     }catch(ex){
       err.textContent='השליחה לא עברה. נסו שוב, או שלחו לנו וואטסאפ.';
-      btn.disabled=false;btn.textContent='שליחת הפרטים';
+      btn.disabled=false;btn.textContent='מצאו לי קבוצה';
     }
   });
+  document.getElementById('qcopy').onclick=function(){var b=this;navigator.clipboard.writeText(document.getElementById('qurl').textContent).then(function(){b.textContent='הועתק ✓';setTimeout(function(){b.textContent='העתקה'},1500)})};
+  var st=document.getElementById('sticky'),fw=document.getElementById('join');
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){st.classList.toggle('show',!es[0].isIntersecting)},{threshold:0}).observe(fw)}
 })();
 </script>

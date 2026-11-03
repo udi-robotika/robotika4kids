@@ -159,7 +159,7 @@ for f in sorted(glob.glob(f"{RAW}/pages/*.html")):
     title=s.title.get_text() if s.title else "Robotika4Kids"
     og=lambda p:(s.find("meta",attrs={"property":p}) or {}).get("content","")
     desc=og("og:description")
-    if path=="/השאירו-פרטים": desc="השאירו פרטים ונחזור אליכם עם חוג, סדנה או קורס רובוטיקה שמתאימים לילד או לילדה."
+    if path=="/השאירו-פרטים": desc="חוג רובוטיקה לגילאי 7–12 ברמת גן ובדיזנגוף סנטר. בונים מכוניות חכמות ורובוטים ולומדים לתכנת. השאירו פרטים ונמצא לכם קבוצה."; title="חוג רובוטיקה לילדים ברמת גן ותל אביב | Robotika4Kids"
     ogimg=local_img(og("og:image")) if og("og:image") else ""
     navcur="/" if path=="/רובוטיקה-ילדים-נוער" else path
     page=(TPL.replace("{{TITLE}}",html.escape(title)).replace("{{DESC}}",html.escape(desc))
