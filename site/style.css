@@ -297,6 +297,8 @@ fieldset.qcard legend+*{clear:both}
 .lp-steps .qalt{text-align:start}
 .lp-steps .qlink{text-align:start}
 .lp-sticky{display:none}
+.lp-news{display:inline-block;margin:0 0 10px;background:#fff;border:2.5px solid var(--ink);border-radius:14px;padding:6px 14px;font-size:17px;line-height:1.4;box-shadow:4px 4px 0 var(--ink)}
+.lp-news b{color:#D93A1F}
 .lp-facts li.lp-loc{padding:0;background:none}
 .lp-loc a{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;text-decoration:none;padding:5px 14px 5px 16px;border-radius:999px;box-shadow:3px 3px 0 #fff;transition:transform .15s,box-shadow .15s}
 .lp-loc a u{text-underline-offset:3px;font-weight:700;color:var(--yellow)}
