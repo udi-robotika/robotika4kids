@@ -64,7 +64,7 @@ a{color:var(--blue)}
 /* ---------- home ---------- */
 .hero{background-color:var(--yellow);background-image:radial-gradient(circle,rgba(15,27,61,.13) 1.6px,transparent 1.8px);background-size:22px 22px;border-bottom:3px solid var(--ink)}
 .hero-in{max-width:1240px;margin:0 auto;padding:34px 18px 46px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-a.hero-where{text-decoration:none}a.hero-where:hover u{color:#fff}
+a.hero-where{text-decoration:none}.hero-former{margin:2px 0 10px;font-size:15px;font-weight:600;color:var(--ink);opacity:.75}a.hero-where:hover u{color:#fff}
 .hero-where{margin:0 0 6px;font-weight:600;font-size:16px;display:inline-block;background:var(--ink);color:var(--yellow);padding:3px 12px;border-radius:6px}
 .hero h1{font-family:var(--disp);font-weight:400;font-size:clamp(40px,6vw,74px);line-height:1.02;margin:6px 0 16px;letter-spacing:-.5px}
 .hero-lead{font-size:20px;line-height:1.55;max-width:34em;margin:0 0 24px;color:var(--ink)}
