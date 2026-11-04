@@ -216,5 +216,6 @@ document.querySelector('.scrim').onclick=()=>{document.body.classList.remove('me
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.body.classList.remove('menu');document.querySelectorAll('.nav li.open').forEach(l=>l.classList.remove('open'))}});
 document.addEventListener('click',e=>{if(!e.target.closest('.nav'))document.querySelectorAll('.nav>ul>li.open').forEach(l=>{if(matchMedia('(min-width:1001px)').matches)l.classList.remove('open')})});
 </script>
+<script src="https://www.robotika.co.il/home-btn.js" defer></script>
 </body>
 </html>
