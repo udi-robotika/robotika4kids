@@ -161,6 +161,7 @@ iframe.embed{width:100%;border:0;display:block;border-radius:16px}
   .wa{margin-inline-start:auto}
   .nav{position:fixed;top:0;bottom:0;right:0;width:min(320px,86vw);background:#fff;border-left:3px solid var(--ink);z-index:60;overflow-y:auto;padding:70px 14px 30px;transform:translateX(105%);transition:transform .25s}
   body.menu .nav{transform:none}
+  body.menu .hdr{z-index:70}
   body.menu .scrim{display:block;position:fixed;inset:0;background:rgba(15,27,61,.45);z-index:50}
   .nav>ul{flex-direction:column;align-items:stretch;gap:2px}
   .nav a{font-size:18px;padding:11px 14px;border-radius:12px}
